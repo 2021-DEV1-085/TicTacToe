@@ -3,9 +3,10 @@ package com.bnp.kata.DEV1085.object;
 public class Cell {
     char character;
 
-    Cell(){}
+    Cell() {
+    }
 
-    public Cell(char character){
+    public Cell(char character) {
     }
 
     public char getCharacter() {

@@ -50,7 +50,7 @@ class ApplicationTests {
     }
 
     @Test
-    void isGridFullWithPlayerOneWinner() {
+    void isGridFullWithoutWinner() {
         Cell[][] cells = createEmptyCells();
 
         cells[0][0].setCharacter('o');
@@ -68,18 +68,35 @@ class ApplicationTests {
 
     @Test
     void hasPlayerOneWon() {
-		Cell[][] cells = createEmptyCells();
+        Cell[][] cells = createEmptyCells();
 
-		cells[0][0].setCharacter('o');
-		cells[0][1].setCharacter('x');
-		cells[0][2].setCharacter('o');
-		cells[1][0].setCharacter('x');
-		cells[1][1].setCharacter('x');
-		cells[1][2].setCharacter('x');
-		cells[2][0].setCharacter('0');
-		cells[2][1].setCharacter('x');
-		cells[2][2].setCharacter('0');
+        cells[0][0].setCharacter('o');
+        cells[0][1].setCharacter('x');
+        cells[0][2].setCharacter('o');
+        cells[1][0].setCharacter('x');
+        cells[1][1].setCharacter('x');
+        cells[1][2].setCharacter('x');
+        cells[2][0].setCharacter('0');
+        cells[2][1].setCharacter('x');
+        cells[2][2].setCharacter('0');
 
-		Assert.isTrue(GameService.isGridFull(cells) && GameService.hasPlayerWon(cells, 'x') && !GameService.hasPlayerWon(cells, 'o'), "Player 1 should win");
+        Assert.isTrue(GameService.isGridFull(cells) && GameService.hasPlayerWon(cells, 'x') && !GameService.hasPlayerWon(cells, 'o'), "Player 1 should win");
+    }
+
+    @Test
+    void hasPlayerTwoWon() {
+        Cell[][] cells = createEmptyCells();
+
+        cells[0][0].setCharacter('x');
+        cells[0][1].setCharacter('x');
+        cells[0][2].setCharacter('o');
+        cells[1][0].setCharacter('x');
+        cells[1][1].setCharacter('o');
+        cells[1][2].setCharacter('x');
+        cells[2][0].setCharacter('o');
+        cells[2][1].setCharacter('x');
+        cells[2][2].setCharacter('o');
+
+        Assert.isTrue(GameService.isGridFull(cells) && !GameService.hasPlayerWon(cells, 'x') && GameService.hasPlayerWon(cells, 'o'), "Player 2 should win");
     }
 }
