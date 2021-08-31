@@ -4,6 +4,26 @@ import com.bnp.kata.DEV1085.object.Cell;
 
 public class GameService {
 
+    public static Cell[][] createEmptyCells() {
+        return new Cell[][]{
+                {
+                        new Cell('x'),
+                        new Cell(' '),
+                        new Cell(' ')
+                },
+                {
+                        new Cell(' '),
+                        new Cell(' '),
+                        new Cell(' ')
+                },
+                {
+                        new Cell(' '),
+                        new Cell(' '),
+                        new Cell(' ')
+                },
+        };
+    }
+
     /**
      * Has player won
      *

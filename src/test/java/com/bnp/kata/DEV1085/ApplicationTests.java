@@ -16,29 +16,11 @@ class ApplicationTests {
         Assert.notNull(Cell.class, "Cell class is not initialized");
     }
 
-    private Cell[][] createEmptyCells() {
-        return new Cell[][]{
-                {
-                        new Cell(' '),
-                        new Cell(' '),
-                        new Cell(' ')
-                },
-                {
-                        new Cell(' '),
-                        new Cell(' '),
-                        new Cell(' ')
-                },
-                {
-                        new Cell(' '),
-                        new Cell(' '),
-                        new Cell(' ')
-                },
-        };
-    }
+
 
     @Test
     void isGameContinuing() {
-        Cell[][] cells = createEmptyCells();
+        Cell[][] cells = GameService.createEmptyCells();
 
         Assert.isTrue(GameService.isGridFull(cells), "The game should continue");
 
@@ -51,7 +33,7 @@ class ApplicationTests {
 
     @Test
     void isGridFullWithoutWinner() {
-        Cell[][] cells = createEmptyCells();
+        Cell[][] cells = GameService.createEmptyCells();
 
         cells[0][0].setCharacter('o');
         cells[0][1].setCharacter('x');
@@ -68,7 +50,7 @@ class ApplicationTests {
 
     @Test
     void hasPlayerOneWon() {
-        Cell[][] cells = createEmptyCells();
+        Cell[][] cells = GameService.createEmptyCells();
 
         cells[0][0].setCharacter('o');
         cells[0][1].setCharacter('x');
@@ -85,7 +67,7 @@ class ApplicationTests {
 
     @Test
     void hasPlayerTwoWon() {
-        Cell[][] cells = createEmptyCells();
+        Cell[][] cells = GameService.createEmptyCells();
 
         cells[0][0].setCharacter('x');
         cells[0][1].setCharacter('x');
