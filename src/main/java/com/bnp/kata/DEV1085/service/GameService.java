@@ -7,18 +7,18 @@ public class GameService {
     public static Cell[][] createEmptyCells() {
         return new Cell[][]{
                 {
-                        new Cell('x'),
-                        new Cell(' '),
-                        new Cell(' ')
+                        new Cell('x', 0, 0),
+                        new Cell(' ', 0, 1),
+                        new Cell(' ', 0, 2)
                 },
                 {
-                        new Cell(' '),
-                        new Cell(' '),
-                        new Cell(' ')
+                        new Cell(' ', 1, 0),
+                        new Cell(' ', 1, 1),
+                        new Cell(' ', 1, 2)
                 },
                 {
-                        new Cell(' '),
-                        new Cell(' '),
+                        new Cell(' ', 2, 0),
+                        new Cell(' ', 2, 1),
                         new Cell(' ')
                 },
         };

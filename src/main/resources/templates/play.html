@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>TicTacToe</title>
-
     <link th:href="@{/style.css}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -17,46 +15,120 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-
 </head>
 <body>
-<table>
-    <thead></thead>
-    <tbody>
-    <tr th:each="firstLine : ${firstLine}">
-        <form action="#" th:action="@{/play}" method="post" th:object="${selectedCell}">
-            <input th:type="hidden" th:field="*{x}"/>
-            <input th:type="hidden" th:field="*{y}"/>
-            <button type="submit" value="tmpValue">
-                <label th:text="${firstLine.getCharacter()}">
-                </label>
-            </button>
-        </form>
-    </tr>
-    <br/>
-    <tr th:each="secondLine : ${secondLine}">
-        <form action="#" th:action="@{/play}" method="post" th:object="${selectedCell}">
-            <input th:type="hidden" th:field="*{x}"/>
-            <input th:type="hidden" th:field="*{y}"/>
-            <button type="submit" value="tmpValue">
-                <label th:text="${secondLine.getCharacter()}">
-                </label>
-            </button>
-        </form>
-    </tr>
-    <br/>
-    <tr th:each="thirdLine : ${thirdLine}">
-        <form action="#" th:action="@{/play}" method="post" th:object="${selectedCell}">
-            <input th:type="hidden" th:field="*{x}"/>
-            <input th:type="hidden" th:field="*{y}"/>
-            <button type="submit" value="tmpValue">
-                <label th:text="${thirdLine.getCharacter()}">
-                </label>
-            </button>
-        </form>
-    </tr>
-    </form>
-    </tbody>
-</table>
+<h1 class="text-center">Tic Tac Toe</h1>
+<br><br>
+<div class="container">
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>
+                <form action="#" th:action="@{/inGame}" th:object="${selectedCell}"
+                      method="post">
+                    <input type="hidden" name="x" th:value="0">
+                    <input type="hidden" name="y" th:value="0">
+                    <button type="submit">
+                        <label th:text="${firstLine[0].character}">
+                        </label>
+                    </button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/inGame}" th:object="${selectedCell}"
+                      method="post">
+                    <input type="hidden" name="x" th:value="0">
+                    <input type="hidden" name="y" th:value="1">
+                    <button type="submit">
+                        <label th:text="${firstLine[1].character}">
+                        </label>
+                    </button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/inGame}" th:object="${selectedCell}"
+                      method="post">
+                    <input type="hidden" name="x" th:value="0">
+                    <input type="hidden" name="y" th:value="2">
+                    <button type="submit">
+                        <label th:text="${firstLine[2].character}">
+                        </label>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="#" th:action="@{/inGame}" th:object="${selectedCell}"
+                      method="post">
+                    <input type="hidden" name="x" th:value="1">
+                    <input type="hidden" name="y" th:value="0">
+                    <button type="submit">
+                        <label th:text="${secondLine[0].character}">
+                        </label>
+                    </button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/inGame}" th:object="${selectedCell}"
+                      method="post">
+                    <input type="hidden" name="x" th:value="1">
+                    <input type="hidden" name="y" th:value="1">
+                    <button type="submit">
+                        <label th:text="${secondLine[1].character}">
+                        </label>
+                    </button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/inGame}" th:object="${selectedCell}"
+                      method="post">
+                    <input type="hidden" name="x" th:value="1">
+                    <input type="hidden" name="y" th:value="2">
+                    <button type="submit">
+                        <label th:text="${secondLine[2].character}">
+                        </label>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="#" th:action="@{/inGame}" th:object="${selectedCell}"
+                      method="post">
+                    <input type="hidden" name="x" th:value="2">
+                    <input type="hidden" name="y" th:value="0">
+                    <button type="submit">
+                        <label th:text="${thirdLine[0].character}">
+                        </label>
+                    </button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/inGame}" th:object="${selectedCell}"
+                      method="post">
+                    <input type="hidden" name="x" th:value="2">
+                    <input type="hidden" name="y" th:value="1">
+                    <button type="submit">
+                        <label th:text="${thirdLine[1].character}">
+                        </label>
+                    </button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/inGame}" th:object="${selectedCell}"
+                      method="post">
+                    <input type="hidden" name="x" th:value="2">
+                    <input type="hidden" name="y" th:value="2">
+                    <button type="submit">
+                        <label th:text="${thirdLine[2].character}">
+                        </label>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

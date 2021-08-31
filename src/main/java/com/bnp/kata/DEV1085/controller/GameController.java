@@ -3,11 +3,10 @@ package com.bnp.kata.DEV1085.controller;
 import com.bnp.kata.DEV1085.object.Cell;
 import com.bnp.kata.DEV1085.service.GameService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
 import java.util.logging.Logger;
 
 @Controller
@@ -16,10 +15,9 @@ public class GameController {
     enum ROUND {
         PLAYER_ONE,
         PLAYER_TWO
-    };
+    }
 
     private Cell[][] cells;
-    //private Grid grid = new Grid();
     private static ROUND round = ROUND.PLAYER_ONE;
     private static Logger logger = Logger.getLogger("GameController");
 
@@ -27,35 +25,30 @@ public class GameController {
         this.initCells();
     }
 
-
     void initCells() {
         this.cells = GameService.createEmptyCells();
     }
 
-    @RequestMapping(value = "/play")
-    public String play(@ModelAttribute("selectedCell") Cell selectedCell, Model model) {
-        System.out.println("Salut");
+    @RequestMapping(value = "/inGame")
+    public String play(@ModelAttribute("selectedCell") Cell selectedCell) {
         if (selectedCell != null) {
-            System.out.println("Value : " + selectedCell.getX() + selectedCell.getY());
-//            this.cells = selectedCell;
+            Integer x = selectedCell.getX();
+            Integer y = selectedCell.getY();
             if (round == ROUND.PLAYER_ONE) {
-                selectedCell.setCharacter('x');
+                this.cells[x][y].setCharacter('x');
                 round = ROUND.PLAYER_TWO;
-            }
-            else {
+            } else {
                 selectedCell.setCharacter('o');
+                this.cells[x][y].setCharacter('o');
                 round = ROUND.PLAYER_ONE;
             }
         }
-        //model.addAttribute("cells", this.cells);
-        //this.displayCells();
-        return "play";
+        return "redirect:/play";
     }
 
-    private void displayCells() {
-        Arrays.stream(this.cells[0]).forEach(cell -> logger.info(String.valueOf(cell.getCharacter())));
-        Arrays.stream(this.cells[1]).forEach(cell -> logger.info(String.valueOf(cell.getCharacter())));
-        Arrays.stream(this.cells[2]).forEach(cell -> logger.info(String.valueOf(cell.getCharacter())));
+    @GetMapping(value = "/play")
+    public String beginGame() {
+        return "play";
     }
 
     @ModelAttribute("firstLine")
