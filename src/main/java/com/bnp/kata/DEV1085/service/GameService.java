@@ -7,7 +7,7 @@ public class GameService {
     public static Cell[][] createEmptyCells() {
         return new Cell[][]{
                 {
-                        new Cell('x', 0, 0),
+                        new Cell(' ', 0, 0),
                         new Cell(' ', 0, 1),
                         new Cell(' ', 0, 2)
                 },

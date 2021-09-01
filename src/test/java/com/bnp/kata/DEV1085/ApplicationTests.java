@@ -5,15 +5,16 @@ import com.bnp.kata.DEV1085.object.Cell;
 import com.bnp.kata.DEV1085.service.GameService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ApplicationTests {
 
     @Test
     void contextLoads() {
-        Assert.notNull(GameController.class, "GameController is not initialized");
-        Assert.notNull(Cell.class, "Cell class is not initialized");
+        assertNotNull(GameController.class, "GameController is not initialized");
+        assertNotNull(Cell.class, "Cell class is not initialized");
     }
 
 
@@ -22,13 +23,13 @@ class ApplicationTests {
     void isGameContinuing() {
         Cell[][] cells = GameService.createEmptyCells();
 
-        Assert.isTrue(GameService.isGridFull(cells), "The game should continue");
+        assertFalse(GameService.isGridFull(cells), "The game should continue");
 
         cells[0][0].setCharacter('x');
         cells[0][2].setCharacter('o');
         cells[1][1].setCharacter('x');
         cells[2][2].setCharacter('o');
-        Assert.isTrue(GameService.isGridFull(cells), "The game should continue");
+        assertFalse(GameService.isGridFull(cells), "The game should continue");
     }
 
     @Test
@@ -45,7 +46,7 @@ class ApplicationTests {
         cells[2][1].setCharacter('o');
         cells[2][2].setCharacter('x');
 
-        Assert.isTrue(GameService.isGridFull(cells) && !GameService.hasPlayerWon(cells, 'x') && !GameService.hasPlayerWon(cells, 'o'), "The game should end without winner");
+        assertTrue(GameService.isGridFull(cells) && !GameService.hasPlayerWon(cells, 'x') && !GameService.hasPlayerWon(cells, 'o'), "The game should end without winner");
     }
 
     @Test
@@ -62,7 +63,7 @@ class ApplicationTests {
         cells[2][1].setCharacter('x');
         cells[2][2].setCharacter('0');
 
-        Assert.isTrue(GameService.isGridFull(cells) && GameService.hasPlayerWon(cells, 'x') && !GameService.hasPlayerWon(cells, 'o'), "Player 1 should win");
+        assertTrue(GameService.isGridFull(cells) && GameService.hasPlayerWon(cells, 'x') && !GameService.hasPlayerWon(cells, 'o'), "Player 1 should win");
     }
 
     @Test
@@ -79,6 +80,6 @@ class ApplicationTests {
         cells[2][1].setCharacter('x');
         cells[2][2].setCharacter('o');
 
-        Assert.isTrue(GameService.isGridFull(cells) && !GameService.hasPlayerWon(cells, 'x') && GameService.hasPlayerWon(cells, 'o'), "Player 2 should win");
+        assertTrue(GameService.isGridFull(cells) && !GameService.hasPlayerWon(cells, 'x') && GameService.hasPlayerWon(cells, 'o'), "Player 2 should win");
     }
 }

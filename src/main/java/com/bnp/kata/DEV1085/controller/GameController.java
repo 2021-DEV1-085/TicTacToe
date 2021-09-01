@@ -36,10 +36,18 @@ public class GameController {
             Integer y = selectedCell.getY();
             if (round == ROUND.PLAYER_ONE) {
                 this.cells[x][y].setCharacter('x');
+                if (GameService.hasPlayerWon(cells, 'x'))
+                {
+                    System.out.println("Player 1 won");
+                }
                 round = ROUND.PLAYER_TWO;
             } else {
                 selectedCell.setCharacter('o');
                 this.cells[x][y].setCharacter('o');
+                if (GameService.hasPlayerWon(cells, 'o'))
+                {
+                    System.out.println("Player 2 won");
+                }
                 round = ROUND.PLAYER_ONE;
             }
         }
