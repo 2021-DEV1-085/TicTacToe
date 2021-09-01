@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>TicTacToe</title>
     <link th:href="@{/style.css}" rel="stylesheet">
+    <link rel="shortcut icon" href="#"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -20,6 +21,7 @@
 <h1 class="text-center">Tic Tac Toe</h1>
 <br><br>
 <div class="container">
+    <span th:if="${message != null}" th:text="${message}"/>
     <table class="table">
         <tbody>
         <tr>
@@ -28,7 +30,7 @@
                       method="post">
                     <input type="hidden" name="x" th:value="0">
                     <input type="hidden" name="y" th:value="0">
-                    <button type="submit">
+                    <button type="submit" class="cell">
                         <label th:text="${firstLine[0].character}">
                         </label>
                     </button>
@@ -39,7 +41,7 @@
                       method="post">
                     <input type="hidden" name="x" th:value="0">
                     <input type="hidden" name="y" th:value="1">
-                    <button type="submit">
+                    <button type="submit" class="cell">
                         <label th:text="${firstLine[1].character}">
                         </label>
                     </button>
@@ -50,7 +52,7 @@
                       method="post">
                     <input type="hidden" name="x" th:value="0">
                     <input type="hidden" name="y" th:value="2">
-                    <button type="submit">
+                    <button type="submit" class="cell">
                         <label th:text="${firstLine[2].character}">
                         </label>
                     </button>
@@ -63,7 +65,7 @@
                       method="post">
                     <input type="hidden" name="x" th:value="1">
                     <input type="hidden" name="y" th:value="0">
-                    <button type="submit">
+                    <button type="submit" class="cell">
                         <label th:text="${secondLine[0].character}">
                         </label>
                     </button>
@@ -74,7 +76,7 @@
                       method="post">
                     <input type="hidden" name="x" th:value="1">
                     <input type="hidden" name="y" th:value="1">
-                    <button type="submit">
+                    <button type="submit" class="cell">
                         <label th:text="${secondLine[1].character}">
                         </label>
                     </button>
@@ -85,7 +87,7 @@
                       method="post">
                     <input type="hidden" name="x" th:value="1">
                     <input type="hidden" name="y" th:value="2">
-                    <button type="submit">
+                    <button type="submit" class="cell">
                         <label th:text="${secondLine[2].character}">
                         </label>
                     </button>
@@ -98,7 +100,7 @@
                       method="post">
                     <input type="hidden" name="x" th:value="2">
                     <input type="hidden" name="y" th:value="0">
-                    <button type="submit">
+                    <button type="submit" class="cell">
                         <label th:text="${thirdLine[0].character}">
                         </label>
                     </button>
@@ -109,7 +111,7 @@
                       method="post">
                     <input type="hidden" name="x" th:value="2">
                     <input type="hidden" name="y" th:value="1">
-                    <button type="submit">
+                    <button type="submit" class="cell">
                         <label th:text="${thirdLine[1].character}">
                         </label>
                     </button>
@@ -120,7 +122,7 @@
                       method="post">
                     <input type="hidden" name="x" th:value="2">
                     <input type="hidden" name="y" th:value="2">
-                    <button type="submit">
+                    <button type="submit" class="cell">
                         <label th:text="${thirdLine[2].character}">
                         </label>
                     </button>
@@ -129,6 +131,9 @@
         </tr>
         </tbody>
     </table>
+    <form class="add-letter-div" action="#" th:action="@{/reset}" method="get">
+        <button role="button" class="btn btn-primary btn-lg" type="submit">Reset</button>
+    </form>
 </div>
 </body>
 </html>
