@@ -17,7 +17,7 @@ public class GameController {
     }
 
     private Cell[][] cells;
-    private static ROUND round = ROUND.PLAYER_ONE;
+    private ROUND round = ROUND.PLAYER_ONE;
     private String message;
 
     GameController() {
@@ -28,6 +28,11 @@ public class GameController {
         this.cells = GameService.createEmptyCells();
     }
 
+    /**
+     * When a user plays his round, hits that endpoint
+     * @param selectedCell the selected cell in the grid
+     * @return the html file
+     */
     @RequestMapping(value = "/inGame")
     public String play(@ModelAttribute("selectedCell") Cell selectedCell) {
         this.message = null;
@@ -50,6 +55,11 @@ public class GameController {
         return "redirect:/play";
     }
 
+    /**
+     * When the page initialized
+     * @param model the model of the page
+     * @return the html file
+     */
     @GetMapping(value = "/play")
     public String beginGame(Model model) {
         if (this.message == null && GameService.isGridFull(this.cells))
@@ -58,6 +68,10 @@ public class GameController {
         return "play";
     }
 
+    /**
+     * When a user hits the "Reset" button
+     * @return the html file
+     */
     @GetMapping(value = "/reset")
     public String reset() {
         this.initCells();
@@ -65,16 +79,28 @@ public class GameController {
         return "redirect:/play";
     }
 
+    /**
+     * first line used in the html file
+     * @return the first line of Cell objects
+     */
     @ModelAttribute("firstLine")
     public Cell[] firstLine() {
         return this.cells[0];
     }
 
+    /**
+     * second line used in the html file
+     * @return the second line of Cell objects
+     */
     @ModelAttribute("secondLine")
     public Cell[] secondLine() {
         return this.cells[1];
     }
 
+    /**
+     * third line used in the html file
+     * @return the third line of Cell objects
+     */
     @ModelAttribute("thirdLine")
     public Cell[] thirdLine() {
         return this.cells[2];

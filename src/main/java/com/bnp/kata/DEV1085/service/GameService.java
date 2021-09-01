@@ -4,6 +4,14 @@ import com.bnp.kata.DEV1085.object.Cell;
 
 public class GameService {
 
+    private GameService() {
+    }
+
+    /**
+     * Creation of the empty grid
+     *
+     * @return the empty grid
+     */
     public static Cell[][] createEmptyCells() {
         return new Cell[][]{
                 {
@@ -19,7 +27,7 @@ public class GameService {
                 {
                         new Cell(' ', 2, 0),
                         new Cell(' ', 2, 1),
-                        new Cell(' ')
+                        new Cell(' ', 2, 2)
                 },
         };
     }
