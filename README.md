@@ -12,3 +12,4 @@ Intellij 2021 Community
 # To run this project : 
   1) maven clean install 
   2) Launch the Spring project in your IDE or with command line
+  3) Visit http://localhost:8080/play
